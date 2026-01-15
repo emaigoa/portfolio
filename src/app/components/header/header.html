@@ -8,7 +8,7 @@
       class="text-left rounded-2xl px-3 py-2 hover:bg-white/5 transition"
       aria-label="Ir al inicio"
     >
-      <p class="text-base font-semibold tracking-wide">{{ lastName }}</p>
+      <p class="text-base font-semibold tracking-wide">{{ Name }}</p>
     </button>
 
     <!-- Botones de navegación -->
@@ -26,9 +26,9 @@
     <div class="flex items-center gap-2">
       <!-- Descargar CV (texto cambia por idioma) -->
       <a
-        [href]="cvUrl"
-        download
         class="rounded-xl bg-white/10 px-3 py-2 text-sm ring-1 ring-white/15 hover:bg-white/15 transition"
+        [href]="cvUrl"
+        [attr.download]="cvFileName"
       >
         {{ t[lang].cv }}
       </a>
@@ -42,13 +42,13 @@
       >
         <img
           *ngIf="lang === 'es'"
-          src="../../../assets/ar.svg"
+          src="../../../assets/flags/ar.svg"
           alt="Español"
           class="h-4 w-6 rounded-sm"
         />
         <img
           *ngIf="lang === 'en'"
-          src="../../../assets/us.svg"
+          src="../../../assets/flags/us.svg"
           alt="English"
           class="h-4 w-6 rounded-sm"
         />

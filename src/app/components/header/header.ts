@@ -10,9 +10,9 @@ type Lang = 'es' | 'en';
   templateUrl: './header.html',
 })
 export class HeaderComponent {
-  @Input() lastName = 'Igoa';
-  @Input() cvEsUrl = '/assets/cv-es.pdf';
-  @Input() cvEnUrl = '/assets/cv-en.pdf';
+  @Input() Name = 'Emanuel Igoa';
+  @Input() cvEsUrl = '/assets/cv/cv-es.pdf';
+  @Input() cvEnUrl = '/assets/cv/cv-en.pdf';
 
   lang: Lang = 'es';
 
@@ -66,6 +66,6 @@ export class HeaderComponent {
   }
 
   get cvFileName(): string {
-    return this.lang === 'es' ? 'CV_Emanuel_Igoa_ES.pdf' : 'CV_Emanuel_Igoa_EN.pdf';
+    return this.lang === 'es' ? 'CV-Emanuel-Igoa-ES.pdf' : 'CV-Emanuel-Igoa-EN.pdf';
   }
 }
