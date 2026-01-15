@@ -1,216 +1,187 @@
+<app-header
+  lastName="Igoa"
+  cvEsUrl="/assets/cv-es.pdf"
+  cvEnUrl="/assets/cv-en.pdf"
+></app-header>
 <div class="min-h-screen bg-slate-950 text-slate-100">
-  <!-- Background glow -->
-  <div class="pointer-events-none fixed inset-0 -z-10">
-    <div
-      class="absolute left-1/2 top-[-10%] h-130 w-130 -translate-x-1/2 rounded-full bg-indigo-500/20 blur-3xl"
-    ></div>
-    <div
-      class="absolute right-[-10%] top-[35%] h-105 w-105 rounded-full bg-fuchsia-500/15 blur-3xl"
-    ></div>
-    <div
-      class="absolute bottom-[-10%] left-[10%] h-105 w-105 rounded-full bg-cyan-500/10 blur-3xl"
-    ></div>
-  </div>
+  <main class="mx-auto max-w-6xl px-4 pt-24 pb-16">
 
-  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-    <!-- Top bar -->
-    <header class="flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <div
-          class="grid h-11 w-11 place-items-center rounded-2xl bg-white/10 ring-1 ring-white/15"
-        >
-          <span class="text-sm font-semibold">{{ initials || 'EI' }}</span>
-        </div>
-        <div class="leading-tight">
-          <p class="text-sm font-semibold">{{ name }}</p>
-          <p class="text-xs text-slate-300">{{ role }}</p>
-        </div>
-      </div>
+    <section id="inicio" class="pt-6">
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+        <!-- IZQUIERDA -->
+        <div class="lg:col-span-7">
+          <h1 class="text-5xl sm:text-6xl font-semibold tracking-tight">
+            {{ fullName }}
+          </h1>
 
-      <div class="flex items-center gap-2">
-        <a
-          *ngFor="let l of links"
-          [href]="l.href"
-          target="_blank"
-          rel="noreferrer"
-          class="rounded-xl bg-white/5 px-3 py-2 text-xs font-medium text-slate-200 ring-1 ring-white/10 transition hover:bg-white/10"
-        >
-          {{ l.label }}
-        </a>
-      </div>
-    </header>
+          <p class="mt-3 text-3xl sm:text-4xl font-semibold text-cyan-400">
+            {{ roleByLang[lang] }}
+          </p>
 
-    <!-- Hero -->
-    <section class="mt-10 grid gap-8 lg:grid-cols-12 lg:items-center">
-      <div class="lg:col-span-7">
-        <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">
-          <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-          Disponible para oportunidades Jr
-          <span class="text-slate-400">•</span>
-          <span class="text-slate-300">{{ location }}</span>
-        </div>
+          <p class="mt-6 max-w-2xl text-base sm:text-lg text-slate-200/90 leading-relaxed">
+            {{ bioByLang[lang] }}
+          </p>
 
-        <h1 class="mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
-          Hola, soy <span class="text-indigo-300">{{ name }}</span>.
-          <span class="block text-slate-200">Me meto en el barro con datos y ML.</span>
-        </h1>
-
-        <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
-          {{ headline }}
-        </p>
-
-        <p class="mt-2 max-w-2xl text-sm text-slate-400">
-          {{ subheadline }}
-        </p>
-
-
-
-        <!-- Quick stats -->
-        <div class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-            <p class="text-xs text-slate-400">Foco</p>
-            <p class="mt-1 text-sm font-semibold">Datos → ML</p>
-          </div>
-          <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-            <p class="text-xs text-slate-400">Stack</p>
-            <p class="mt-1 text-sm font-semibold">Python + Angular</p>
-          </div>
-          <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-            <p class="text-xs text-slate-400">Me gusta</p>
-            <p class="mt-1 text-sm font-semibold">Proyectos con métricas</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right card -->
-      <div class="lg:col-span-5">
-        <div class="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
-          <h2 class="text-base font-semibold">Qué puedo aportar</h2>
-
-          <ul class="mt-4 space-y-3 text-sm text-slate-300">
-            <li class="flex gap-3">
-              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-indigo-300"></span>
-              <span><b class="text-slate-100">Pipelines</b> (ETL/limpieza) listos para análisis y BI.</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-emerald-300"></span>
-              <span><b class="text-slate-100">Modelos</b> con evaluación clara (baseline → mejora → métricas).</span>
-            </li>
-            <li class="flex gap-3">
-              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-cyan-300"></span>
-              <span><b class="text-slate-100">Web</b> para mostrar resultados (Angular + UI prolija).</span>
-            </li>
-          </ul>
-
-          <div class="mt-6 rounded-2xl bg-slate-900/60 p-4 ring-1 ring-white/10">
-            <p class="text-xs text-slate-400">Objetivo inmediato</p>
-            <p class="mt-1 text-sm font-semibold text-slate-100">
-              Entrar a IT por Datos (Jr) y escalar a ML Engineer.
-            </p>
-            <p class="mt-2 text-xs text-slate-400">
-              Si querés, puedo mostrarte 2–3 proyectos end-to-end con repo, métricas y demo.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills" class="mt-14">
-      <div class="flex items-end justify-between gap-4">
-        <div>
-          <h2 class="text-xl font-bold">Skills</h2>
-          <p class="mt-1 text-sm text-slate-400">Lo que uso para construir cosas que funcionen.</p>
-        </div>
-      </div>
-
-      <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div
-          *ngFor="let group of skillGroups"
-          class="rounded-3xl bg-white/5 p-5 ring-1 ring-white/10"
-        >
-          <h3 class="text-sm font-semibold text-slate-100">{{ group.title }}</h3>
-          <div class="mt-3 flex flex-wrap gap-2">
-            <span
-              *ngFor="let s of group.items"
-              class="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-300 ring-1 ring-white/10"
-            >
-              {{ s }}
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured projects -->
-    <section class="mt-14">
-      <h2 class="text-xl font-bold">Proyectos destacados</h2>
-      <p class="mt-1 text-sm text-slate-400">
-        Pocos, pero bien presentados: problema → solución → métricas → demo.
-      </p>
-
-      <div class="mt-6 grid gap-4 lg:grid-cols-3">
-        <article
-          *ngFor="let p of featuredProjects"
-          class="group rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 transition hover:bg-white/10"
-        >
-          <h3 class="text-base font-semibold text-slate-100">{{ p.title }}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-300">{{ p.description }}</p>
-
-          <div class="mt-4 flex flex-wrap gap-2">
-            <span
-              *ngFor="let t of p.tags"
-              class="rounded-full bg-slate-900/60 px-3 py-1 text-xs text-slate-300 ring-1 ring-white/10"
-            >
-              {{ t }}
-            </span>
-          </div>
-
-          <div class="mt-5 flex flex-wrap gap-2">
+          <!-- ICONOS -->
+          <div class="mt-8 flex items-center gap-4">
+            <!-- LinkedIn -->
             <a
-              *ngFor="let link of p.links"
-              [href]="link.href"
+              [href]="links.linkedin"
               target="_blank"
               rel="noreferrer"
-              class="rounded-xl bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 ring-1 ring-white/10 transition hover:bg-white/10"
+              class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition"
+              aria-label="LinkedIn"
+              title="LinkedIn"
             >
-              {{ link.label }}
+              <!-- icon -->
+              <svg viewBox="0 0 24 24" class="h-6 w-6 fill-white">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H7.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.603 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zM6.814 20.452H3.861V9h2.953v11.452z"
+                />
+              </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a
+              [href]="links.github"
+              target="_blank"
+              rel="noreferrer"
+              class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <svg viewBox="0 0 24 24" class="h-6 w-6 fill-white">
+                <path
+                  d="M12 .5C5.73.5.75 5.64.75 12.03c0 5.12 3.29 9.46 7.86 10.99.58.11.79-.26.79-.57 0-.28-.01-1.02-.02-2-3.2.71-3.88-1.58-3.88-1.58-.53-1.37-1.29-1.73-1.29-1.73-1.06-.75.08-.74.08-.74 1.17.08 1.79 1.23 1.79 1.23 1.04 1.82 2.73 1.29 3.4.99.1-.77.41-1.29.74-1.59-2.55-.3-5.23-1.31-5.23-5.83 0-1.29.44-2.35 1.17-3.17-.12-.3-.51-1.52.11-3.17 0 0 .96-.31 3.14 1.21.91-.26 1.88-.39 2.85-.39.97 0 1.95.13 2.85.39 2.18-1.52 3.14-1.21 3.14-1.21.62 1.65.23 2.87.11 3.17.73.82 1.17 1.88 1.17 3.17 0 4.53-2.69 5.52-5.25 5.82.42.37.79 1.1.79 2.22 0 1.6-.02 2.89-.02 3.28 0 .31.21.69.8.57 4.56-1.53 7.85-5.87 7.85-10.99C23.25 5.64 18.27.5 12 .5z"
+                />
+              </svg>
+            </a>
+
+            <!-- Email -->
+            <a
+              [href]="links.mail"
+              class="grid h-11 w-11 place-items-center rounded-xl bg-white/10 ring-1 ring-white/15 hover:bg-white/15 transition"
+              aria-label="Email"
+              title="Email"
+            >
+              <svg viewBox="0 0 24 24" class="h-6 w-6 fill-white">
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+                />
+              </svg>
             </a>
           </div>
+        </div>
 
-          <div class="mt-5 h-px w-full bg-white/10"></div>
-          <p class="mt-4 text-xs text-slate-400">
-            Tip: sumá README con screenshots, dataset, pasos para correr y resultados.
-          </p>
-        </article>
-      </div>
-    </section>
+        <!-- DERECHA: AVATAR -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative">
+            <!-- glow -->
+            <div class="absolute inset-0 -z-10 rounded-full bg-cyan-400/20 blur-2xl"></div>
 
-    <!-- Timeline -->
-    <section class="mt-14">
-      <h2 class="text-xl font-bold">Camino</h2>
-      <p class="mt-1 text-sm text-slate-400">Dónde estoy y hacia dónde voy.</p>
-
-      <div class="mt-6 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
-        <ol class="space-y-6">
-          <li *ngFor="let item of timeline" class="flex gap-4">
-            <div class="mt-1 h-3 w-3 shrink-0 rounded-full bg-indigo-300"></div>
-            <div>
-              <p class="text-xs font-semibold text-slate-400">{{ item.date }}</p>
-              <p class="mt-1 text-sm font-semibold text-slate-100">{{ item.title }}</p>
-              <p class="mt-1 text-sm text-slate-300">{{ item.description }}</p>
+            <div class="h-56 w-56 sm:h-72 sm:w-72 rounded-full overflow-hidden ring-4 ring-cyan-400/60">
+              <img
+                [src]="avatarUrl"
+                alt="Avatar"
+                class="h-full w-full object-cover object-[50%_45%] scale-110"
+              />
             </div>
-          </li>
-        </ol>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="mt-12 border-t border-white/10 py-8 text-sm text-slate-400">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p>© {{ name }} • Portfolio</p>
-        <p class="text-xs">Hecho con Angular + Tailwind • Deploy: Netlify</p>
+
+
+    <section id="skills" class="mt-20 scroll-mt-24">
+      <h2 class="text-2xl font-semibold">{{ content[lang].skillsTitle }}</h2>
+      <p class="mt-2 text-sm text-slate-400">{{ content[lang].skillsNote }}</p>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <span
+          *ngFor="let s of skills"
+          class="rounded-full bg-white/5 px-4 py-2 text-sm ring-1 ring-white/10"
+        >
+          {{ s }}
+        </span>
       </div>
-    </footer>
-  </div>
+    </section>
+
+    <section id="camino" class="mt-20 scroll-mt-24">
+      <h2 class="text-2xl font-semibold">
+        {{ lang === 'es' ? 'En progreso' : 'Currently learning' }}
+      </h2>
+      <p class="mt-2 text-sm text-slate-400">
+        {{ lang === 'es'
+          ? 'Lo que estoy construyendo/estudiando para perfil Data Engineer.'
+          : 'What I’m building/studying for a Data Engineer profile.' }}
+      </p>
+
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        <div
+          *ngFor="let item of learning"
+          class="rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 hover:bg-white/10 transition"
+        >
+          <p class="font-semibold">{{ item.title }}</p>
+          <p class="mt-2 text-sm text-slate-300 leading-relaxed">{{ item.desc }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="mt-20 scroll-mt-24">
+      <h2 class="text-2xl font-semibold">{{ content[lang].projectTitle }}</h2>
+
+      <article class="mt-6 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10">
+        <h3 class="text-lg font-semibold">{{ content[lang].projectName }}</h3>
+
+        <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+          {{ content[lang].projectDesc }}
+        </p>
+
+        <div class="mt-5 flex gap-3">
+          <a
+            [href]="links.demo"
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-2xl bg-white/10 px-4 py-2 text-sm ring-1 ring-white/15 hover:bg-white/15 transition"
+          >
+            {{ content[lang].cta1 }}
+          </a>
+          <a
+            [href]="links.github"
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-2xl bg-white/5 px-4 py-2 text-sm ring-1 ring-white/10 hover:bg-white/10 transition"
+          >
+            {{ content[lang].cta2 }}
+          </a>
+        </div>
+
+        <div class="mt-6">
+          <p class="text-sm font-medium">{{ content[lang].highlightsTitle }}</p>
+          <ul class="mt-2 grid gap-2 sm:grid-cols-2 text-sm text-slate-300">
+            <li
+              *ngFor="let h of content[lang].highlights"
+              class="rounded-2xl bg-white/5 p-3 ring-1 ring-white/10"
+            >
+              {{ h }}
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section id="contacto" class="mt-20 scroll-mt-24">
+      <h2 class="text-2xl font-semibold">{{ content[lang].contactTitle }}</h2>
+      <p class="mt-2 text-sm text-slate-400">{{ content[lang].contactText }}</p>
+
+      <a
+        [href]="links.mail"
+        class="mt-6 inline-flex rounded-2xl bg-white/10 px-5 py-3 text-sm font-medium ring-1 ring-white/15 hover:bg-white/15 transition"
+      >
+        {{ content[lang].contactBtn }}
+      </a>
+    </section>
+
+  </main>
 </div>

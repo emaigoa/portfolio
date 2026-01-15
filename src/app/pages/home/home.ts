@@ -1,114 +1,119 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../components/header/header';
 
-type SkillGroup = {
-  title: string;
-  items: string[];
-};
-
-type Project = {
-  title: string;
-  description: string;
-  tags: string[];
-  links: { label: string; href: string }[];
-};
+type Lang = 'es' | 'en';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CommonModule],
+  standalone: true,
+  imports: [CommonModule, HeaderComponent],
   templateUrl: './home.html',
 })
 export class HomeComponent {
-  name = 'Ema';
-  role = 'Data / ML • Software Engineering Student';
-  location = 'Mar del Plata, Buenos Aires (AR)';
+  lang: Lang = 'es';
 
-  headline =
-    'Construyo proyectos de datos y machine learning con foco en impacto real: pipelines, análisis, modelos y apps web para mostrarlos.';
-  subheadline =
-    'Estudiante de Ingeniería en Sistemas (CAECE). Busco mi primer rol IT orientado a Datos / ML.';
+  avatarUrl = 'assets/avatar.png';
 
-  primaryCta = { label: 'Ver proyectos', href: '/projects' };
-  secondaryCta = { label: 'Contactarme', href: '/contact' };
+  // Datos base
+  links = {
+  github: 'https://github.com/emaigoa',
+  repo: 'https://github.com/emaigoa/Trabajo-Integrador-Arquitectura-Web',
+  demo: 'https://miniecommercearqweb.netlify.app/',
+  linkedin: 'https://www.linkedin.com/in/emanuel-miguel-igoa-b07234379/',
+  mail: 'mailto:emanueligoa@hotmail.com',
+};
 
-  links = [
-    { label: 'GitHub', href: 'https://github.com/' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-    { label: 'CV (PDF)', href: '#' },
-  ];
 
-  skillGroups: SkillGroup[] = [
-    {
-      title: 'Data & ML',
-      items: ['Pandas', 'NumPy', 'Scikit-learn', 'EDA', 'Feature Engineering', 'Model Evaluation'],
+  // Textos por idioma
+  content = {
+    es: {
+      fullName: 'Emanuel Miguel Igoa',
+      role: 'Data Engineer Jr (objetivo) · Estudiante Ing. en Sistemas',
+      location: 'Mar del Plata, Buenos Aires',
+      heroTitle: 'Data Engineer Jr en formación',
+      heroText:
+        'Soy estudiante avanzado de Ingeniería en Sistemas. Estoy enfocándome en Data Engineering (ETL, modelado, SQL) y como segundo paso ML Engineering.',
+      cta1: 'Ver demo',
+      cta2: 'Ver código',
+      skillsTitle: 'Skills',
+      skillsNote: 'orientadas a Data / Backend / Data Pipelines',
+      projectTitle: 'Proyecto destacado',
+      projectName: 'MiniMarket (Mini E-Commerce)',
+      projectDesc:
+        'Proyecto integrador hecho 100% por mí. Incluye catálogo, carrito, login simulado y deploy en Netlify. Me sirve para mostrar estructura, manejo de estado y diseño de UI.',
+      highlightsTitle: 'Qué muestra',
+      highlights: ['Catálogo', 'Carrito', 'Login simulado', 'Deploy (Netlify)'],
+      contactTitle: 'Contacto',
+      contactText: 'Si te interesa mi perfil para Data Engineer Jr, escribime.',
+      contactBtn: 'Enviar email',
     },
-    {
-      title: 'Backend & APIs',
-      items: ['Python', 'Node.js (básico)', 'REST', 'JWT/OAuth (conceptos)', 'Scraping/ETL'],
+    en: {
+      fullName: 'Emanuel Miguel Igoa',
+      role: 'Aspiring Junior Data Engineer · Systems Engineering student',
+      location: 'Mar del Plata, Buenos Aires',
+      heroTitle: 'Junior Data Engineer (in training)',
+      heroText:
+        'I’m an advanced Systems Engineering student focused on Data Engineering (ETL, data modeling, SQL) and later on ML Engineering.',
+      cta1: 'View demo',
+      cta2: 'View code',
+      skillsTitle: 'Skills',
+      skillsNote: 'focused on Data / Backend / Data Pipelines',
+      projectTitle: 'Featured project',
+      projectName: 'MiniMarket (Mini E-Commerce)',
+      projectDesc:
+        'Capstone project built entirely by me. Includes catalog, cart, simulated login and Netlify deployment. It showcases structure, state handling and UI design.',
+      highlightsTitle: 'Highlights',
+      highlights: ['Catalog', 'Cart', 'Simulated login', 'Deployment (Netlify)'],
+      contactTitle: 'Contact',
+      contactText: 'If you’re hiring a Junior Data Engineer, feel free to reach out.',
+      contactBtn: 'Email me',
     },
-    {
-      title: 'Frontend',
-      items: ['Angular', 'TypeScript', 'Tailwind CSS', 'Responsive UI', 'UX básico'],
-    },
-    {
-      title: 'Herramientas',
-      items: ['Git/GitHub', 'Docker (básico)', 'SQL', 'Power BI (intro)', 'Linux (intro)'],
-    },
-  ];
+  };
+  roleByLang = {
+  es: 'Data Engineer Jr (en formación)',
+  en: 'Aspiring Junior Data Engineer',
+};
 
-  featuredProjects: Project[] = [
-    {
-      title: 'Sentiment Analyzer de Reseñas (NLP)',
-      description:
-        'Pipeline para recolectar reseñas, limpiarlas y entrenar un modelo que clasifica positivas/negativas. Dashboard para ver métricas.',
-      tags: ['Python', 'NLP', 'Scikit-learn', 'EDA'],
-      links: [
-        { label: 'Repo', href: 'https://github.com/' },
-        { label: 'Demo', href: '#' },
-      ],
-    },
-    {
-      title: 'ETL + Data Quality para Comercios',
-      description:
-        'ETL desde múltiples fuentes (CSV/JSON) con validaciones, normalización y reporte de calidad. Exportación lista para BI.',
-      tags: ['Python', 'ETL', 'SQL', 'Data Quality'],
-      links: [{ label: 'Repo', href: 'https://github.com/' }],
-    },
-    {
-      title: 'Portfolio Angular + Chatbot (RAG básico)',
-      description:
-        'Portfolio web donde un mini chatbot responde preguntas sobre mí, mis skills y proyectos, usando un dataset propio.',
-      tags: ['Angular', 'Tailwind', 'IA', 'RAG'],
-      links: [{ label: 'Repo', href: 'https://github.com/' }],
-    },
-  ];
+bioByLang = {
+  es: 'Estudiante avanzado de Ingeniería en Sistemas, enfocado en Data Engineering (ETL, modelado, SQL) y con proyección a ML Engineering. Aprendiendo Airflow, AWS y Power BI.',
+  en: 'Advanced Systems Engineering student focused on Data Engineering (ETL, data modeling, SQL) with a long-term path toward ML Engineering. Currently learning Airflow, AWS, and Power BI.',
+};
 
-  timeline = [
-    {
-      date: '2026',
-      title: 'Objetivo: Primer rol IT en Datos/ML',
-      description: 'Apuntando a Data Analyst / Data Engineer Jr (puerta de entrada) y luego ML.',
+  copy = {
+    es: {
+      title: 'Data Engineer Jr en formación',
+      subtitle:
+        'Estudiante avanzado de Ingeniería en Sistemas. Estoy construyendo proyectos orientados a datos (scraping + pipelines) y aprendiendo Airflow, AWS y Power BI. Busco mi primer empleo IT como Data Engineer Jr, con proyección a ML Engineer.',
+      ctaDemo: 'Ver demo',
+      ctaCode: 'Ver código',
     },
-    {
-      date: '2025–2026',
-      title: 'Proyectos de práctica + Portfolio',
-      description: 'EDA, NLP, pipelines ETL, dashboards y deploys (Netlify).',
+    en: {
+      title: 'Aspiring Junior Data Engineer',
+      subtitle:
+        'Advanced Systems Engineering student building data-focused projects (scraping + pipelines) and learning Airflow, AWS, and Power BI. Seeking my first IT role as a Junior Data Engineer, with a long-term path toward ML Engineering.',
+      ctaDemo: 'View demo',
+      ctaCode: 'View code',
     },
-    {
-      date: 'CAECE',
-      title: 'Ing. en Sistemas (4to año)',
-      description: 'Base fuerte en ingeniería de software + bases de datos + redes + proyectos.',
-    },
-  ];
+  };
+  fullName = 'Emanuel Miguel Igoa';
+  location = {
+    es: 'Mar del Plata, Buenos Aires',
+    en: 'Mar del Plata, Buenos Aires',
+  };
+  skills = ['Python', 'SQL', 'Git', 'Angular', 'TypeScript', 'Docker (básico)', 'ETL (en progreso)'];
+  learning = [
+  { title: 'Scraping de reseñas', desc: 'Recolección + limpieza + dataset para análisis y ML (en progreso).' },
+  { title: 'Airflow', desc: 'Orquestación de pipelines (en progreso).' },
+  { title: 'AWS', desc: 'Servicios base para datos (en progreso).' },
+  { title: 'Power BI', desc: 'Dashboards y reporting (en progreso).' },
+];
 
-  // Helpers (opcional)
-  get initials(): string {
-    return this.name
-      .split(' ')
-      .filter(Boolean)
-      .slice(0, 2)
-      .map((w) => w[0]?.toUpperCase())
-      .join('');
+
+
+  // escucha el evento del header
+  @HostListener('window:lang-change', ['$event'])
+  onLangChange(e: any) {
+    this.lang = e.detail as Lang;
   }
 }

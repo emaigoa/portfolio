@@ -1,0 +1,77 @@
+<header class="fixed top-0 left-0 z-50 w-full bg-slate-950/80 backdrop-blur border-b border-white/10">
+  <div class="mx-auto max-w-6xl px-4 h-20 flex items-center justify-between gap-3">
+
+    <!-- Apellido (solo) -->
+    <button
+      type="button"
+      (click)="goTo('inicio')"
+      class="text-left rounded-2xl px-3 py-2 hover:bg-white/5 transition"
+      aria-label="Ir al inicio"
+    >
+      <p class="text-base font-semibold tracking-wide">{{ lastName }}</p>
+    </button>
+
+    <!-- Botones de navegación -->
+    <nav class="hidden md:flex items-center gap-2">
+      <button
+        *ngFor="let item of navItems"
+        (click)="goTo(item.id)"
+        class="px-3 py-2 text-sm rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition"
+      >
+        {{ item.label }}
+      </button>
+    </nav>
+
+    <!-- Acciones -->
+    <div class="flex items-center gap-2">
+      <!-- Descargar CV (texto cambia por idioma) -->
+      <a
+        [href]="cvUrl"
+        download
+        class="rounded-xl bg-white/10 px-3 py-2 text-sm ring-1 ring-white/15 hover:bg-white/15 transition"
+      >
+        {{ t[lang].cv }}
+      </a>
+
+      <!-- Toggle idioma con banderas -->
+      <button
+        type="button"
+        (click)="toggleLang()"
+        class="rounded-xl bg-white/5 px-3 py-2 text-sm ring-1 ring-white/10 hover:bg-white/10 transition flex items-center gap-2"
+        title="Cambiar idioma"
+      >
+        <img
+          *ngIf="lang === 'es'"
+          src="../../../assets/ar.svg"
+          alt="Español"
+          class="h-4 w-6 rounded-sm"
+        />
+        <img
+          *ngIf="lang === 'en'"
+          src="../../../assets/us.svg"
+          alt="English"
+          class="h-4 w-6 rounded-sm"
+        />
+
+
+        <span class="hidden sm:inline font-medium">
+          {{ lang === 'es' ? 'ES' : 'EN' }}
+        </span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Nav mobile simple -->
+  <div class="md:hidden px-4 pb-3">
+    <div class="flex flex-wrap gap-2">
+      <button
+        *ngFor="let item of navItems"
+        (click)="goTo(item.id)"
+        class="px-3 py-2 text-sm rounded-xl text-slate-300 bg-white/5 ring-1 ring-white/10 hover:bg-white/10 transition"
+      >
+        {{ item.label }}
+      </button>
+    </div>
+  </div>
+</header>
